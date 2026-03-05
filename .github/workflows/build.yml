@@ -50,7 +50,7 @@ jobs:
         run: |
           cp scripts/install_macos.sh install.sh
           chmod +x install.sh
-          zip -r Glasspectum-v${{ github.ref_name || '1.0.0' }}-macOS.zip \
+          zip -r Glasspectum-${{ github.ref_name || 'v1.0.0' }}-macOS.zip \
             Glasspectum.ofx.bundle install.sh
 
       - uses: actions/upload-artifact@v4
@@ -86,7 +86,7 @@ jobs:
           cp scripts/install_linux.sh install.sh
           chmod +x install.sh
           cp -r build/Glasspectum.ofx.bundle .
-          zip -r Glasspectum-v${{ github.ref_name || '1.0.0' }}-Linux.zip \
+          zip -r Glasspectum-${{ github.ref_name || 'v1.0.0' }}-Linux.zip \
             Glasspectum.ofx.bundle install.sh
 
       - uses: actions/upload-artifact@v4
@@ -120,7 +120,7 @@ jobs:
           Copy-Item scripts\install_windows.bat install.bat
           Copy-Item -Recurse build\Glasspectum.ofx.bundle .
           Compress-Archive -Path Glasspectum.ofx.bundle, install.bat `
-            -DestinationPath "Glasspectum-v$($env:GITHUB_REF_NAME ?? '1.0.0')-Windows.zip"
+            -DestinationPath "Glasspectum-$($env:GITHUB_REF_NAME ?? 'v1.0.0')-Windows.zip"
 
       - uses: actions/upload-artifact@v4
         with:
