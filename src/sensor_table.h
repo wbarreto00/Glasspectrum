@@ -1,12 +1,12 @@
 #pragma once
 /*
- * Glasspectum — Sensor Size Presets Table
+ * Glasspectrum — Sensor Size Presets Table
  * Physical sensor dimensions for CoC, crop factor, and edge-aberration scaling.
  */
 
 #include <cmath>
 
-namespace glasspectum {
+namespace glasspectrum {
 
 struct SensorPreset {
   const char *name;
@@ -60,4 +60,4 @@ inline float cropFactor(int sensorIndex) {
   return kSensorPresets[sensorIndex].crop_factor;
 }
 
-} // namespace glasspectum
+} // namespace glasspectrum

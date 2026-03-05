@@ -1,5 +1,5 @@
 /*
- * Glasspectum — CPU Image Processor Implementation
+ * Glasspectrum — CPU Image Processor Implementation
  * Full 11-stage rendering pipeline operating in scene-linear.
  *
  * Pipeline order:
@@ -16,7 +16,7 @@
  *  11) Output conversion
  */
 
-#include "glasspectum_processor.h"
+#include "glasspectrum_processor.h"
 #include <algorithm>
 #include <cmath>
 #include <cstring>
@@ -26,7 +26,7 @@
 #define M_PI 3.14159265358979323846
 #endif
 
-namespace glasspectum {
+namespace glasspectrum {
 
 // ── Utility ───────────────────────────────────────────────────────
 
@@ -880,4 +880,4 @@ void processImage(const ImageBuffer &src, ImageBuffer &dst,
   std::memcpy(dst.data, workBuf.data(), pixelCount * 4 * sizeof(float));
 }
 
-} // namespace glasspectum
+} // namespace glasspectrum

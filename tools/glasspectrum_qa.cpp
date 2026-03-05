@@ -1,23 +1,23 @@
 /*
- * Glasspectum QA Tool
+ * Glasspectrum QA Tool
  *
  * CLI tool for image quality comparison and lens calibration.
  *
  * Usage:
- *   glasspectum_qa compare <reference.raw> <test.raw> <width> <height>
+ *   glasspectrum_qa compare <reference.raw> <test.raw> <width> <height>
  *     → Computes SSIM and DSSIM between two RGBA float raw images.
  *
- *   glasspectum_qa calibrate <reference.raw> <width> <height> <preset_index>
+ *   glasspectrum_qa calibrate <reference.raw> <width> <height> <preset_index>
  *     → Suggests parameter adjustments to match reference.
  *
- *   glasspectum_qa list
+ *   glasspectrum_qa list
  *     → Lists all available lens presets.
  *
  * Image format: flat binary RGBA float32 (width * height * 4 * sizeof(float))
  */
 
 #include "color_pipeline.h"
-#include "glasspectum_processor.h"
+#include "glasspectrum_processor.h"
 #include "lens_profile_db.h"
 #include <algorithm>
 #include <cmath>
@@ -26,7 +26,7 @@
 #include <cstring>
 #include <vector>
 
-using namespace glasspectum;
+using namespace glasspectrum;
 
 // ── SSIM Implementation ──────────────────────────────────────
 
@@ -178,7 +178,7 @@ static float computeEdgeMAE(const float *refData, const float *testData,
 // ── CLI Entry Point ──────────────────────────────────────────
 
 static void printUsage(const char *prog) {
-  printf("Glasspectum QA Tool v1.0\n\n");
+  printf("Glasspectrum QA Tool v1.0\n\n");
   printf("Usage:\n");
   printf("  %s compare <reference.raw> <test.raw> <width> <height>\n", prog);
   printf("  %s calibrate <reference.raw> <width> <height> <preset_index>\n",

@@ -1,5 +1,5 @@
 /*
- * Glasspectum — Color Pipeline Implementation
+ * Glasspectrum — Color Pipeline Implementation
  * All transfer functions preserve out-of-range values.
  */
 
@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <cmath>
 
-namespace glasspectum {
+namespace glasspectrum {
 
 // ── sRGB OETF / EOTF ─────────────────────────────────────────────
 
@@ -257,4 +257,4 @@ const char *colorSpaceName(ColorSpaceIndex cs) {
   return s_colorSpaceNames[cs];
 }
 
-} // namespace glasspectum
+} // namespace glasspectrum

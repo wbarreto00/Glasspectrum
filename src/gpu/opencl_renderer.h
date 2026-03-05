@@ -1,12 +1,12 @@
 #pragma once
 /*
- * Glasspectum — OpenCL GPU Renderer (Stub)
+ * Glasspectrum — OpenCL GPU Renderer (Stub)
  * TODO: Implement OpenCL kernels as Windows GPU fallback.
  */
 
-#ifdef GLASSPECTU_HAS_OPENCL
+#ifdef GLASSPECTRU_HAS_OPENCL
 
-namespace glasspectum {
+namespace glasspectrum {
 
 struct RenderParams;
 
@@ -18,6 +18,6 @@ void openclRender(const float *inputData, float *outputData,
                   const float *depthData, int width, int height,
                   const RenderParams &params, void *clCommandQueue);
 
-} // namespace glasspectum
+} // namespace glasspectrum
 
-#endif // GLASSPECTU_HAS_OPENCL
+#endif // GLASSPECTRU_HAS_OPENCL

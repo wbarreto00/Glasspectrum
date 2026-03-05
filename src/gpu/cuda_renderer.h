@@ -1,13 +1,13 @@
 #pragma once
 /*
- * Glasspectum — CUDA GPU Renderer (Stub)
+ * Glasspectrum — CUDA GPU Renderer (Stub)
  * TODO: Implement CUDA kernels mirroring the Metal compute shaders.
  * This is the preferred GPU path on Windows with NVIDIA GPUs.
  */
 
-#ifdef GLASSPECTU_HAS_CUDA
+#ifdef GLASSPECTRU_HAS_CUDA
 
-namespace glasspectum {
+namespace glasspectrum {
 
 struct RenderParams;
 
@@ -19,6 +19,6 @@ void cudaRender(const float *inputData, float *outputData,
                 const float *depthData, int width, int height,
                 const RenderParams &params, void *cudaStream);
 
-} // namespace glasspectum
+} // namespace glasspectrum
 
-#endif // GLASSPECTU_HAS_CUDA
+#endif // GLASSPECTRU_HAS_CUDA

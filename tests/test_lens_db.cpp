@@ -1,5 +1,5 @@
 /*
- * Glasspectum — Lens Profile Database Test
+ * Glasspectrum — Lens Profile Database Test
  * Validates:
  *   - Exactly 50 presets (build fails if not)
  *   - Range validation for all numeric fields
@@ -14,7 +14,7 @@
 #include <set>
 #include <string>
 
-using namespace glasspectum;
+using namespace glasspectrum;
 
 static int g_errors = 0;
 
@@ -105,7 +105,7 @@ static void validateProfile(const LensProfile &p, int index) {
 }
 
 int main() {
-  printf("=== Glasspectum Lens Profile DB Test ===\n\n");
+  printf("=== Glasspectrum Lens Profile DB Test ===\n\n");
 
   // Test 1: Count == 50
   int count = getLensProfileCount();

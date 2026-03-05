@@ -1,12 +1,12 @@
 /*
- * Glasspectum — Trait Mixer Implementation
+ * Glasspectrum — Trait Mixer Implementation
  */
 
 #include "trait_mixer.h"
 #include <algorithm>
 #include <cmath>
 
-namespace glasspectum {
+namespace glasspectrum {
 
 // ── Helper: get a profile, falling back to index 0 ────────────────
 
@@ -156,4 +156,4 @@ void applyOverdrive(ResolvedProfile &profile, float overdrive) {
   profile.colorCast.cast_delta_xy[1] *= castScale;
 }
 
-} // namespace glasspectum
+} // namespace glasspectrum

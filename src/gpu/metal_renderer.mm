@@ -1,5 +1,5 @@
 /*
- * Glasspectum — Metal GPU Renderer Implementation
+ * Glasspectrum — Metal GPU Renderer Implementation
  * Objective-C++ file that interfaces with Metal framework.
  * This is the PRIMARY rendering path on macOS.
  */
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Metal/Metal.h>
 
-#include "../glasspectum_processor.h"
+#include "../glasspectrum_processor.h"
 #include "../sensor_table.h"
 #include "../trait_mixer.h"
 #include "metal_renderer.h"
@@ -17,7 +17,7 @@
 #include <algorithm>
 #include <cmath>
 
-namespace glasspectum {
+namespace glasspectrum {
 
 // ── Static state ──────────────────────────────────────────────
 
@@ -107,14 +107,14 @@ struct GlassPipelineParams {
 static id<MTLComputePipelineState> createPSO(NSString *name) {
   id<MTLFunction> func = [s_library newFunctionWithName:name];
   if (!func) {
-    NSLog(@"[Glasspectum] Metal function '%@' not found", name);
+    NSLog(@"[Glasspectrum] Metal function '%@' not found", name);
     return nil;
   }
   NSError *error = nil;
   id<MTLComputePipelineState> pso =
       [s_device newComputePipelineStateWithFunction:func error:&error];
   if (error) {
-    NSLog(@"[Glasspectum] Failed to create PSO for '%@': %@", name, error);
+    NSLog(@"[Glasspectrum] Failed to create PSO for '%@': %@", name, error);
     return nil;
   }
   return pso;
@@ -128,22 +128,22 @@ bool metalInit() {
 
   s_device = MTLCreateSystemDefaultDevice();
   if (!s_device) {
-    NSLog(@"[Glasspectum] No Metal device available");
+    NSLog(@"[Glasspectrum] No Metal device available");
     return false;
   }
 
   // Load the compiled metallib from the bundle
   NSBundle *bundle = [NSBundle
       bundleForClass:[NSObject class]]; // Will be adjusted for OFX bundle
-  NSString *libPath = [bundle pathForResource:@"glasspectum"
+  NSString *libPath = [bundle pathForResource:@"glasspectrum"
                                        ofType:@"metallib"];
 
   if (!libPath) {
     // Try loading from the plugin bundle's Resources
     // OFX plugins on macOS are bundles at
-    // /Library/OFX/Plugins/Glasspectum.ofx.bundle
-    NSString *pluginPath = @"/Library/OFX/Plugins/Glasspectum.ofx.bundle/"
-                           @"Contents/Resources/glasspectum.metallib";
+    // /Library/OFX/Plugins/Glasspectrum.ofx.bundle
+    NSString *pluginPath = @"/Library/OFX/Plugins/Glasspectrum.ofx.bundle/"
+                           @"Contents/Resources/glasspectrum.metallib";
     if ([[NSFileManager defaultManager] fileExistsAtPath:pluginPath]) {
       libPath = pluginPath;
     }
@@ -157,8 +157,8 @@ bool metalInit() {
 
   if (!s_library) {
     // Fallback: try compiling from source at runtime
-    NSString *srcPath = @"/Library/OFX/Plugins/Glasspectum.ofx.bundle/Contents/"
-                        @"Resources/glasspectum.metal";
+    NSString *srcPath = @"/Library/OFX/Plugins/Glasspectrum.ofx.bundle/Contents/"
+                        @"Resources/glasspectrum.metal";
     NSString *src = [NSString stringWithContentsOfFile:srcPath
                                               encoding:NSUTF8StringEncoding
                                                  error:&error];
@@ -170,7 +170,7 @@ bool metalInit() {
   }
 
   if (!s_library) {
-    NSLog(@"[Glasspectum] Failed to load Metal library: %@", error);
+    NSLog(@"[Glasspectrum] Failed to load Metal library: %@", error);
     return false;
   }
 
@@ -190,7 +190,7 @@ bool metalInit() {
   s_colorConvertPSO = createPSO(@"colorConvertKernel");
 
   s_initialized = true;
-  NSLog(@"[Glasspectum] Metal initialized successfully on %@", s_device.name);
+  NSLog(@"[Glasspectrum] Metal initialized successfully on %@", s_device.name);
   return true;
 }
 
@@ -652,6 +652,6 @@ void metalRender(const float *inputData, float *outputData,
   }
 }
 
-} // namespace glasspectum
+} // namespace glasspectrum
 
 #endif // __APPLE__

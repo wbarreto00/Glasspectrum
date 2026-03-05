@@ -1,8 +1,8 @@
-# Glasspectum
+# Glasspectrum
 
 **Lens emulation OFX plugin for DaVinci Resolve 18.6+**
 
-Glasspectum emulates optical lens characteristics in post-production. 50 cinema lens presets with trait-level mixing, GPU-accelerated processing (Metal primary, CPU fallback), and an ACES-compatible color pipeline.
+Glasspectrum emulates optical lens characteristics in post-production. 50 cinema lens presets with trait-level mixing, GPU-accelerated processing (Metal primary, CPU fallback), and an ACES-compatible color pipeline.
 
 ## Features
 
@@ -16,29 +16,29 @@ Glasspectum emulates optical lens characteristics in post-production. 50 cinema 
 ## Build (macOS)
 
 ```bash
-cd Glasspectum
+cd Glasspectrum
 mkdir build && cd build
 cmake ..
 make -j$(sysctl -n hw.ncpu)
 ```
 
 This produces:
-- `build/Glasspectum.ofx.bundle/` — ready to install
+- `build/Glasspectrum.ofx.bundle/` — ready to install
 - `build/tests/test_lens_db` — lens DB validation
 - `build/tests/test_pipeline` — pipeline unit tests
-- `build/tools/glasspectum_qa` — QA comparison tool
+- `build/tools/glasspectrum_qa` — QA comparison tool
 
 ## Install
 
 ```bash
 # macOS
-sudo cp -R build/Glasspectum.ofx.bundle /Library/OFX/Plugins/
+sudo cp -R build/Glasspectrum.ofx.bundle /Library/OFX/Plugins/
 
 # Or via CMake:
 sudo cmake --install build
 ```
 
-Restart DaVinci Resolve. Find **Glasspectum** under OpenFX effects.
+Restart DaVinci Resolve. Find **Glasspectrum** under OpenFX effects.
 
 ## Build (Windows)
 
@@ -50,7 +50,7 @@ cmake .. -DENABLE_OPENCL=ON # Non-NVIDIA GPU
 cmake --build . --config Release
 ```
 
-Install to `C:\Program Files\Common Files\OFX\Plugins\Glasspectum.ofx.bundle\Contents\Win64\`.
+Install to `C:\Program Files\Common Files\OFX\Plugins\Glasspectrum.ofx.bundle\Contents\Win64\`.
 
 ## Parameter UI Order
 
@@ -90,21 +90,21 @@ All processing in scene-linear order:
 
 ```bash
 # List presets
-./build/tools/glasspectum_qa list
+./build/tools/glasspectrum_qa list
 
 # Compare two images (SSIM + edge MAE)
-./build/tools/glasspectum_qa compare reference.raw test.raw 3840 2160
+./build/tools/glasspectrum_qa compare reference.raw test.raw 3840 2160
 
 # Calibrate against reference
-./build/tools/glasspectum_qa calibrate reference.raw 3840 2160 0
+./build/tools/glasspectrum_qa calibrate reference.raw 3840 2160 0
 ```
 
 ## Architecture
 
 ```
 src/
-├── glasspectum_plugin.cpp      # OFX entry point + parameter UI
-├── glasspectum_processor.cpp   # CPU rendering pipeline (fallback)
+├── glasspectrum_plugin.cpp      # OFX entry point + parameter UI
+├── glasspectrum_processor.cpp   # CPU rendering pipeline (fallback)
 ├── lens_profile_db.cpp         # 50 embedded presets (static_assert count==50)
 ├── color_pipeline.cpp          # 11 color space conversions
 ├── trait_mixer.cpp             # Mix-and-match + overdrive scaling
@@ -115,7 +115,7 @@ src/
     ├── cuda_renderer.cu        # CUDA (stub, planned)
     └── opencl_renderer.cpp     # OpenCL (stub, planned)
 shaders/
-└── glasspectum.metal           # 12 Metal compute kernels
+└── glasspectrum.metal           # 12 Metal compute kernels
 ```
 
 ## License

@@ -2,7 +2,7 @@
 #define OFX_PARAM_H
 
 /*
- * OpenFX Parameter Suite - Vendored header for Glasspectum
+ * OpenFX Parameter Suite - Vendored header for Glasspectrum
  */
 
 #include "ofxCore.h"

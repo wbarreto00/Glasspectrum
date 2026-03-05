@@ -1,3 +1,4 @@
 build/
+build2/
 *.zip
 .DS_Store

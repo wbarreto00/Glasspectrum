@@ -2,7 +2,7 @@
 #define OFX_IMAGE_EFFECT_H
 
 /*
- * OpenFX Image Effect API - Vendored header for Glasspectum
+ * OpenFX Image Effect API - Vendored header for Glasspectrum
  * Based on the OpenFX 1.4 specification
  */
 

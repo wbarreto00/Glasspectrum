@@ -14,6 +14,6 @@ target_include_directories(test_lens_db PRIVATE ${CMAKE_SOURCE_DIR}/include ${CM
 # Test: Pipeline stages
 add_executable(test_pipeline test_pipeline.cpp
     ${TEST_LIB_SOURCES}
-    ${CMAKE_SOURCE_DIR}/src/glasspectum_processor.cpp
+    ${CMAKE_SOURCE_DIR}/src/glasspectrum_processor.cpp
 )
 target_include_directories(test_pipeline PRIVATE ${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/src)

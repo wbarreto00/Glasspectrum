@@ -1,6 +1,6 @@
 #pragma once
 /*
- * Glasspectum — CPU Image Processor Header
+ * Glasspectrum — CPU Image Processor Header
  * Full rendering pipeline: 11 stages from input conversion to master blend.
  */
 
@@ -10,7 +10,7 @@
 #include "sensor_table.h"
 #include "trait_mixer.h"
 
-namespace glasspectum {
+namespace glasspectrum {
 
 // ── Render parameters collected from OFX UI ──────────────────────
 
@@ -129,4 +129,4 @@ void applyMasterBlend(const ImageBuffer &original, ImageBuffer &processed,
 
 } // namespace stages
 
-} // namespace glasspectum
+} // namespace glasspectrum

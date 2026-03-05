@@ -1,12 +1,12 @@
 #pragma once
 /*
- * Glasspectum — Lens Profile Database Header
+ * Glasspectrum — Lens Profile Database Header
  * Contains data structures and accessors for the 50 embedded lens presets.
  */
 
 #include <cstdint>
 
-namespace glasspectum {
+namespace glasspectrum {
 
 // ── Sub-structures ────────────────────────────────────────────────
 
@@ -112,4 +112,4 @@ const LensProfile *getLensProfileByName(const char *name);
 // Returns 50 (or asserts at compile time).
 int getLensProfileCount();
 
-} // namespace glasspectum
+} // namespace glasspectrum

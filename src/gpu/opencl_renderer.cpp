@@ -1,17 +1,17 @@
 /*
- * Glasspectum — OpenCL GPU Renderer (Stub)
+ * Glasspectrum — OpenCL GPU Renderer (Stub)
  * TODO: Port Metal compute kernels to OpenCL.
  */
 
-#ifdef GLASSPECTU_HAS_OPENCL
+#ifdef GLASSPECTRU_HAS_OPENCL
 
 #include "opencl_renderer.h"
 #include <cstdio>
 
-namespace glasspectum {
+namespace glasspectrum {
 
 bool openclInit() {
-  fprintf(stderr, "[Glasspectum] OpenCL renderer not yet implemented. Using "
+  fprintf(stderr, "[Glasspectrum] OpenCL renderer not yet implemented. Using "
                   "CPU fallback.\n");
   return false;
 }
@@ -24,6 +24,6 @@ void openclRender(const float *, float *, const float *, int, int,
   // Stub
 }
 
-} // namespace glasspectum
+} // namespace glasspectrum
 
-#endif // GLASSPECTU_HAS_OPENCL
+#endif // GLASSPECTRU_HAS_OPENCL

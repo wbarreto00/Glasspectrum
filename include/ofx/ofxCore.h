@@ -2,7 +2,7 @@
 #define OFX_CORE_H
 
 /*
- * OpenFX Core API - Minimal vendored header for Glasspectum
+ * OpenFX Core API - Minimal vendored header for Glasspectrum
  * Based on the OpenFX 1.4 specification (BSD-3-Clause licensed)
  * Only types and constants needed for a DaVinci Resolve OFX plugin.
  */

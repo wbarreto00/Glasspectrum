@@ -1,11 +1,11 @@
 /*
- * Glasspectum — Pipeline Stage Tests
+ * Glasspectrum — Pipeline Stage Tests
  * Tests individual processing stages with known inputs.
  */
 
 #include "color_pipeline.h"
 #include "dof_engine.h"
-#include "glasspectum_processor.h"
+#include "glasspectrum_processor.h"
 #include "lens_profile_db.h"
 #include "sensor_table.h"
 #include <cmath>
@@ -13,7 +13,7 @@
 #include <cstring>
 #include <vector>
 
-using namespace glasspectum;
+using namespace glasspectrum;
 
 static int g_errors = 0;
 static int g_tests = 0;
@@ -236,7 +236,7 @@ static void testProcessImageSmoke() {
 // ── Main ──────────────────────────────────────────────────────
 
 int main() {
-  printf("=== Glasspectum Pipeline Tests ===\n\n");
+  printf("=== Glasspectrum Pipeline Tests ===\n\n");
 
   testColorRoundtrip();
   testVignette();

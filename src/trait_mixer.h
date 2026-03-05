@@ -1,13 +1,13 @@
 #pragma once
 /*
- * Glasspectum — Trait Mixer
+ * Glasspectrum — Trait Mixer
  * Implements the mix-and-match system where each trait group can source
  * its parameters from either the base lens or a custom lens override.
  */
 
 #include "lens_profile_db.h"
 
-namespace glasspectum {
+namespace glasspectrum {
 
 // Each trait group can be sourced from the base lens or overridden by another.
 enum TraitSourceMode { TRAIT_SOURCE_BASE = 0, TRAIT_SOURCE_CUSTOM = 1 };
@@ -59,4 +59,4 @@ ResolvedProfile resolveProfile(int baseLensIndex,
 // Modifies the profile in-place with trait-specific curves.
 void applyOverdrive(ResolvedProfile &profile, float overdrive);
 
-} // namespace glasspectum
+} // namespace glasspectrum

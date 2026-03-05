@@ -1,4 +1,4 @@
-name: Build & Release Glasspectum
+name: Build & Release Glasspectrum
 
 on:
   push:
@@ -31,14 +31,14 @@ jobs:
 
       - name: Create universal binary
         run: |
-          mkdir -p Glasspectum.ofx.bundle/Contents/MacOS
-          mkdir -p Glasspectum.ofx.bundle/Contents/Resources
+          mkdir -p Glasspectrum.ofx.bundle/Contents/MacOS
+          mkdir -p Glasspectrum.ofx.bundle/Contents/Resources
           lipo -create \
-            build-arm64/Glasspectum.ofx.bundle/Contents/MacOS/Glasspectum.ofx \
-            build-x86/Glasspectum.ofx.bundle/Contents/MacOS/Glasspectum.ofx \
-            -output Glasspectum.ofx.bundle/Contents/MacOS/Glasspectum.ofx
-          cp build-arm64/Glasspectum.ofx.bundle/Contents/Info.plist Glasspectum.ofx.bundle/Contents/
-          cp build-arm64/Glasspectum.ofx.bundle/Contents/Resources/* Glasspectum.ofx.bundle/Contents/Resources/
+            build-arm64/Glasspectrum.ofx.bundle/Contents/MacOS/Glasspectrum.ofx \
+            build-x86/Glasspectrum.ofx.bundle/Contents/MacOS/Glasspectrum.ofx \
+            -output Glasspectrum.ofx.bundle/Contents/MacOS/Glasspectrum.ofx
+          cp build-arm64/Glasspectrum.ofx.bundle/Contents/Info.plist Glasspectrum.ofx.bundle/Contents/
+          cp build-arm64/Glasspectrum.ofx.bundle/Contents/Resources/* Glasspectrum.ofx.bundle/Contents/Resources/
 
       - name: Run tests
         run: |
@@ -50,13 +50,13 @@ jobs:
         run: |
           cp scripts/install_macos.sh install.sh
           chmod +x install.sh
-          zip -r Glasspectum-${{ github.ref_name || 'v1.0.0' }}-macOS.zip \
-            Glasspectum.ofx.bundle install.sh
+          zip -r Glasspectrum-${{ github.ref_name || 'v1.0.0' }}-macOS.zip \
+            Glasspectrum.ofx.bundle install.sh
 
       - uses: actions/upload-artifact@v4
         with:
           name: macos-build
-          path: Glasspectum-*.zip
+          path: Glasspectrum-*.zip
 
   # ═══════════════════════════════════════════════════════════════
   # Linux build (x86_64)
@@ -85,14 +85,14 @@ jobs:
         run: |
           cp scripts/install_linux.sh install.sh
           chmod +x install.sh
-          cp -r build/Glasspectum.ofx.bundle .
-          zip -r Glasspectum-${{ github.ref_name || 'v1.0.0' }}-Linux.zip \
-            Glasspectum.ofx.bundle install.sh
+          cp -r build/Glasspectrum.ofx.bundle .
+          zip -r Glasspectrum-${{ github.ref_name || 'v1.0.0' }}-Linux.zip \
+            Glasspectrum.ofx.bundle install.sh
 
       - uses: actions/upload-artifact@v4
         with:
           name: linux-build
-          path: Glasspectum-*.zip
+          path: Glasspectrum-*.zip
 
   # ═══════════════════════════════════════════════════════════════
   # Windows build (x64)
@@ -118,14 +118,14 @@ jobs:
         shell: pwsh
         run: |
           Copy-Item scripts\install_windows.bat install.bat
-          Copy-Item -Recurse build\Glasspectum.ofx.bundle .
-          Compress-Archive -Path Glasspectum.ofx.bundle, install.bat `
-            -DestinationPath "Glasspectum-$($env:GITHUB_REF_NAME ?? 'v1.0.0')-Windows.zip"
+          Copy-Item -Recurse build\Glasspectrum.ofx.bundle .
+          Compress-Archive -Path Glasspectrum.ofx.bundle, install.bat `
+            -DestinationPath "Glasspectrum-$($env:GITHUB_REF_NAME ?? 'v1.0.0')-Windows.zip"
 
       - uses: actions/upload-artifact@v4
         with:
           name: windows-build
-          path: Glasspectum-*.zip
+          path: Glasspectrum-*.zip
 
   # ═══════════════════════════════════════════════════════════════
   # Create GitHub Release with all 3 platform zips
@@ -142,9 +142,9 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          name: "Glasspectum ${{ github.ref_name }}"
+          name: "Glasspectrum ${{ github.ref_name }}"
           body: |
-            ## Glasspectum ${{ github.ref_name }}
+            ## Glasspectrum ${{ github.ref_name }}
 
             Lens emulation OFX plugin for DaVinci Resolve 18.6+
 
@@ -154,15 +154,15 @@ jobs:
             2. Unzip it
             3. Run the install script (`install.sh` on macOS/Linux, `install.bat` on Windows)
             4. Restart DaVinci Resolve
-            5. Find **Glasspectum** in the OpenFX effects panel
+            5. Find **Glasspectrum** in the OpenFX effects panel
 
             ### Downloads
 
             | Platform | File |
             |----------|------|
-            | macOS (Apple Silicon + Intel) | `Glasspectum-${{ github.ref_name }}-macOS.zip` |
-            | Linux (x86_64) | `Glasspectum-${{ github.ref_name }}-Linux.zip` |
-            | Windows (x64) | `Glasspectum-${{ github.ref_name }}-Windows.zip` |
-          files: Glasspectum-*.zip
+            | macOS (Apple Silicon + Intel) | `Glasspectrum-${{ github.ref_name }}-macOS.zip` |
+            | Linux (x86_64) | `Glasspectrum-${{ github.ref_name }}-Linux.zip` |
+            | Windows (x64) | `Glasspectrum-${{ github.ref_name }}-Windows.zip` |
+          files: Glasspectrum-*.zip
           draft: false
           prerelease: false

@@ -1,21 +1,21 @@
 /*
- * Glasspectum — CUDA GPU Renderer (Stub)
+ * Glasspectrum — CUDA GPU Renderer (Stub)
  * TODO: Port Metal compute kernels to CUDA.
- * All kernel logic mirrors glasspectum.metal exactly.
+ * All kernel logic mirrors glasspectrum.metal exactly.
  */
 
-#ifdef GLASSPECTU_HAS_CUDA
+#ifdef GLASSPECTRU_HAS_CUDA
 
 #include "cuda_renderer.h"
 #include <cstdio>
 
-namespace glasspectum {
+namespace glasspectrum {
 
 bool cudaInit() {
   // TODO: Initialize CUDA device, compile kernels
   fprintf(
       stderr,
-      "[Glasspectum] CUDA renderer not yet implemented. Using CPU fallback.\n");
+      "[Glasspectrum] CUDA renderer not yet implemented. Using CPU fallback.\n");
   return false;
 }
 
@@ -27,6 +27,6 @@ void cudaRender(const float *, float *, const float *, int, int,
   // Stub — CPU fallback handles rendering
 }
 
-} // namespace glasspectum
+} // namespace glasspectrum
 
-#endif // GLASSPECTU_HAS_CUDA
+#endif // GLASSPECTRU_HAS_CUDA

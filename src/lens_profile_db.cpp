@@ -1,5 +1,5 @@
 /*
- * Glasspectum — Lens Profile Database
+ * Glasspectrum — Lens Profile Database
  * 50 embedded lens presets with compile-time validation.
  */
 
@@ -7,7 +7,7 @@
 #include <cassert>
 #include <cstring>
 
-namespace glasspectum {
+namespace glasspectrum {
 
 // ── Helper macro for concise profile definition ────────────────────
 
@@ -451,4 +451,4 @@ const LensProfile *getLensProfileByName(const char *name) {
 
 int getLensProfileCount() { return kLensProfileCount; }
 
-} // namespace glasspectum
+} // namespace glasspectrum

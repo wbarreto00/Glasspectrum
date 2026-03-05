@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(Glasspectum VERSION 1.0.0 LANGUAGES CXX)
+project(Glasspectrum VERSION 1.0.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -16,8 +16,8 @@ include_directories(${CMAKE_SOURCE_DIR}/src)
 
 # ── Source files ───────────────────────────────────────────────
 set(PLUGIN_SOURCES
-    src/glasspectum_plugin.cpp
-    src/glasspectum_processor.cpp
+    src/glasspectrum_plugin.cpp
+    src/glasspectrum_processor.cpp
     src/lens_profile_db.cpp
     src/color_pipeline.cpp
     src/trait_mixer.cpp
@@ -33,7 +33,7 @@ option(ENABLE_CUDA "Enable CUDA GPU support" OFF)
 if(ENABLE_CUDA AND NOT APPLE)
     enable_language(CUDA)
     list(APPEND PLUGIN_SOURCES src/gpu/cuda_renderer.cu)
-    add_definitions(-DGLASSPECTU_HAS_CUDA)
+    add_definitions(-DGLASSPECTRU_HAS_CUDA)
 endif()
 
 # ── OpenCL support (Windows fallback) ─────────────────────────
@@ -42,23 +42,23 @@ if(ENABLE_OPENCL AND NOT APPLE)
     find_package(OpenCL)
     if(OpenCL_FOUND)
         list(APPEND PLUGIN_SOURCES src/gpu/opencl_renderer.cpp)
-        add_definitions(-DGLASSPECTU_HAS_OPENCL)
+        add_definitions(-DGLASSPECTRU_HAS_OPENCL)
     endif()
 endif()
 
 # ── Build the OFX plugin (shared library) ─────────────────────
-add_library(Glasspectum SHARED ${PLUGIN_SOURCES})
+add_library(Glasspectrum SHARED ${PLUGIN_SOURCES})
 
 # OFX plugins are .ofx files (renamed .dylib/.dll)
-set_target_properties(Glasspectum PROPERTIES
+set_target_properties(Glasspectrum PROPERTIES
     PREFIX ""
     SUFFIX ".ofx"
-    OUTPUT_NAME "Glasspectum"
+    OUTPUT_NAME "Glasspectrum"
 )
 
 # ── Platform-specific linking ──────────────────────────────────
 if(APPLE)
-    target_link_libraries(Glasspectum PRIVATE
+    target_link_libraries(Glasspectrum PRIVATE
         "-framework Metal"
         "-framework MetalKit"
         "-framework Foundation"
@@ -70,9 +70,9 @@ if(APPLE)
     option(ENABLE_METAL_SHADERS "Compile Metal shaders (requires Xcode)" ON)
 
     if(METAL_COMPILER AND ENABLE_METAL_SHADERS)
-        set(METAL_SHADER ${CMAKE_SOURCE_DIR}/shaders/glasspectum.metal)
-        set(METAL_AIR ${CMAKE_BINARY_DIR}/glasspectum.air)
-        set(METAL_LIB ${CMAKE_BINARY_DIR}/glasspectum.metallib)
+        set(METAL_SHADER ${CMAKE_SOURCE_DIR}/shaders/glasspectrum.metal)
+        set(METAL_AIR ${CMAKE_BINARY_DIR}/glasspectrum.air)
+        set(METAL_LIB ${CMAKE_BINARY_DIR}/glasspectrum.metallib)
 
         add_custom_command(
             OUTPUT ${METAL_AIR}
@@ -87,7 +87,7 @@ if(APPLE)
             COMMENT "Building Metal library"
         )
         add_custom_target(MetalShaders ALL DEPENDS ${METAL_LIB})
-        add_dependencies(Glasspectum MetalShaders)
+        add_dependencies(Glasspectrum MetalShaders)
         set(HAS_METAL_SHADERS TRUE)
     else()
         message(STATUS "Metal shader compiler not found — plugin will use runtime shader compilation")
@@ -95,36 +95,36 @@ if(APPLE)
     endif()
 
     # Visibility
-    set_target_properties(Glasspectum PROPERTIES
+    set_target_properties(Glasspectrum PROPERTIES
         CXX_VISIBILITY_PRESET default
     )
 elseif(WIN32)
     if(ENABLE_CUDA AND TARGET CUDA::cudart)
-        target_link_libraries(Glasspectum PRIVATE CUDA::cudart)
+        target_link_libraries(Glasspectrum PRIVATE CUDA::cudart)
     endif()
     if(ENABLE_OPENCL AND OpenCL_FOUND)
-        target_link_libraries(Glasspectum PRIVATE OpenCL::OpenCL)
+        target_link_libraries(Glasspectrum PRIVATE OpenCL::OpenCL)
     endif()
 endif()
 
 # ── OFX Bundle creation (macOS) ───────────────────────────────
 if(APPLE)
-    set(BUNDLE_DIR "${CMAKE_BINARY_DIR}/Glasspectum.ofx.bundle")
+    set(BUNDLE_DIR "${CMAKE_BINARY_DIR}/Glasspectrum.ofx.bundle")
     set(BUNDLE_CONTENTS "${BUNDLE_DIR}/Contents")
     set(BUNDLE_MACOS "${BUNDLE_CONTENTS}/MacOS")
     set(BUNDLE_RESOURCES "${BUNDLE_CONTENTS}/Resources")
 
-    add_custom_command(TARGET Glasspectum POST_BUILD
+    add_custom_command(TARGET Glasspectrum POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E make_directory ${BUNDLE_MACOS}
         COMMAND ${CMAKE_COMMAND} -E make_directory ${BUNDLE_RESOURCES}
-        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:Glasspectum> ${BUNDLE_MACOS}/Glasspectum.ofx
-        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/shaders/glasspectum.metal ${BUNDLE_RESOURCES}/glasspectum.metal
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:Glasspectrum> ${BUNDLE_MACOS}/Glasspectrum.ofx
+        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/shaders/glasspectrum.metal ${BUNDLE_RESOURCES}/glasspectrum.metal
         COMMENT "Creating OFX bundle"
     )
 
     if(HAS_METAL_SHADERS)
-        add_custom_command(TARGET Glasspectum POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy ${METAL_LIB} ${BUNDLE_RESOURCES}/glasspectum.metallib
+        add_custom_command(TARGET Glasspectrum POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy ${METAL_LIB} ${BUNDLE_RESOURCES}/glasspectrum.metallib
             COMMENT "Copying metallib to bundle"
         )
     endif()
@@ -136,16 +136,16 @@ if(APPLE)
 <plist version=\"1.0\">
 <dict>
     <key>CFBundleDevelopmentRegion</key><string>English</string>
-    <key>CFBundleExecutable</key><string>Glasspectum.ofx</string>
-    <key>CFBundleIdentifier</key><string>com.glasspectum.lensemulator</string>
+    <key>CFBundleExecutable</key><string>Glasspectrum.ofx</string>
+    <key>CFBundleIdentifier</key><string>com.glasspectrum.lensemulator</string>
     <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
-    <key>CFBundleName</key><string>Glasspectum</string>
+    <key>CFBundleName</key><string>Glasspectrum</string>
     <key>CFBundlePackageType</key><string>BNDL</string>
     <key>CFBundleVersion</key><string>${PROJECT_VERSION}</string>
 </dict>
 </plist>")
 
-    add_custom_command(TARGET Glasspectum POST_BUILD
+    add_custom_command(TARGET Glasspectrum POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_BINARY_DIR}/Info.plist ${BUNDLE_CONTENTS}/Info.plist
         COMMENT "Copying Info.plist to bundle"
     )
@@ -153,45 +153,45 @@ endif()
 
 # ── Linux bundle creation ─────────────────────────────────────
 if(UNIX AND NOT APPLE)
-    set_target_properties(Glasspectum PROPERTIES
+    set_target_properties(Glasspectrum PROPERTIES
         POSITION_INDEPENDENT_CODE ON
     )
 
-    set(BUNDLE_DIR "${CMAKE_BINARY_DIR}/Glasspectum.ofx.bundle")
+    set(BUNDLE_DIR "${CMAKE_BINARY_DIR}/Glasspectrum.ofx.bundle")
     set(BUNDLE_CONTENTS "${BUNDLE_DIR}/Contents")
     set(BUNDLE_LINUX "${BUNDLE_CONTENTS}/Linux-x86-64")
 
-    add_custom_command(TARGET Glasspectum POST_BUILD
+    add_custom_command(TARGET Glasspectrum POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E make_directory ${BUNDLE_LINUX}
-        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:Glasspectum> ${BUNDLE_LINUX}/Glasspectum.ofx
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:Glasspectrum> ${BUNDLE_LINUX}/Glasspectrum.ofx
         COMMENT "Creating Linux OFX bundle"
     )
 endif()
 
 # ── Windows bundle creation ───────────────────────────────────
 if(WIN32)
-    set(BUNDLE_DIR "${CMAKE_BINARY_DIR}/Glasspectum.ofx.bundle")
+    set(BUNDLE_DIR "${CMAKE_BINARY_DIR}/Glasspectrum.ofx.bundle")
     set(BUNDLE_CONTENTS "${BUNDLE_DIR}/Contents")
     set(BUNDLE_WIN64 "${BUNDLE_CONTENTS}/Win64")
 
-    add_custom_command(TARGET Glasspectum POST_BUILD
+    add_custom_command(TARGET Glasspectrum POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E make_directory ${BUNDLE_WIN64}
-        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:Glasspectum> ${BUNDLE_WIN64}/Glasspectum.ofx
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:Glasspectrum> ${BUNDLE_WIN64}/Glasspectrum.ofx
         COMMENT "Creating Windows OFX bundle"
     )
 endif()
 
 # ── Install target ─────────────────────────────────────────────
 if(APPLE)
-    install(DIRECTORY "${CMAKE_BINARY_DIR}/Glasspectum.ofx.bundle"
+    install(DIRECTORY "${CMAKE_BINARY_DIR}/Glasspectrum.ofx.bundle"
             DESTINATION "/Library/OFX/Plugins"
             USE_SOURCE_PERMISSIONS)
 elseif(WIN32)
-    install(DIRECTORY "${CMAKE_BINARY_DIR}/Glasspectum.ofx.bundle"
+    install(DIRECTORY "${CMAKE_BINARY_DIR}/Glasspectrum.ofx.bundle"
             DESTINATION "C:/Program Files/Common Files/OFX/Plugins"
             USE_SOURCE_PERMISSIONS)
 elseif(UNIX)
-    install(DIRECTORY "${CMAKE_BINARY_DIR}/Glasspectum.ofx.bundle"
+    install(DIRECTORY "${CMAKE_BINARY_DIR}/Glasspectrum.ofx.bundle"
             DESTINATION "/usr/OFX/Plugins"
             USE_SOURCE_PERMISSIONS)
 endif()

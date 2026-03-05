@@ -1,5 +1,5 @@
 /*
- * Glasspectum — OFX Plugin Entry Point
+ * Glasspectrum — OFX Plugin Entry Point
  * Implements the OpenFX API for DaVinci Resolve 18.6+.
  *
  * GPU rendering (Metal) is the PRIMARY path.
@@ -15,7 +15,7 @@
 #include "../include/ofx/ofxProperty.h"
 
 #include "color_pipeline.h"
-#include "glasspectum_processor.h"
+#include "glasspectrum_processor.h"
 #include "lens_profile_db.h"
 #include "sensor_table.h"
 #include "trait_mixer.h"
@@ -44,7 +44,7 @@
   "OfxImageEffectPropMetalCommandQueue"
 #endif
 
-namespace glasspectum {
+namespace glasspectrum {
 
 // ── Global OFX state ──────────────────────────────────────────
 
@@ -56,9 +56,9 @@ static const OfxMemorySuiteV1 *gMemorySuite = nullptr;
 
 // ── Plugin Identity ───────────────────────────────────────────
 
-static const char *kPluginId = "com.glasspectum.lensemulator";
-static const char *kPluginLabel = "Glasspectum";
-static const char *kPluginGroup = "Glasspectum";
+static const char *kPluginId = "com.glasspectrum.lensemulator";
+static const char *kPluginLabel = "Glasspectrum";
+static const char *kPluginGroup = "Glasspectrum";
 static const int kVersionMajor = 1;
 static const int kVersionMinor = 0;
 
@@ -297,7 +297,7 @@ static OfxStatus actionDescribe(OfxImageEffectHandle effect) {
   gPropSuite->propSetString(effectProps, kOfxPropLabel, 0, kPluginLabel);
   gPropSuite->propSetString(effectProps, kOfxPropShortLabel, 0, kPluginLabel);
   gPropSuite->propSetString(effectProps, kOfxPropLongLabel, 0,
-                            "Glasspectum Lens Emulator");
+                            "Glasspectrum Lens Emulator");
   gPropSuite->propSetString(effectProps, kOfxPluginPropGrouping, 0,
                             kPluginGroup);
   gPropSuite->propSetString(
@@ -826,7 +826,7 @@ static OfxPlugin s_plugin = {kOfxImageEffectPluginApi,
                              setHostFunc,
                              pluginMainEntry};
 
-} // namespace glasspectum
+} // namespace glasspectrum
 
 // ══════════════════════════════════════════════════════════════
 // ══  EXPORTED SYMBOLS  ═════════════════════════════════════
@@ -836,6 +836,6 @@ OfxExport int OfxGetNumberOfPlugins(void) { return 1; }
 
 OfxExport OfxPlugin *OfxGetPlugin(int nth) {
   if (nth == 0)
-    return &glasspectum::s_plugin;
+    return &glasspectrum::s_plugin;
   return nullptr;
 }

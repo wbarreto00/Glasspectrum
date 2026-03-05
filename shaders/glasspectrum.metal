@@ -1,5 +1,5 @@
 /*
- * Glasspectum — Metal Compute Shaders
+ * Glasspectrum — Metal Compute Shaders
  * Primary GPU rendering path for macOS.
  *
  * All pipeline stages as Metal compute kernels operating on RGBA float textures.

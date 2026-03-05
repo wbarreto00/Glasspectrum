@@ -2,7 +2,7 @@
 #define OFX_PROPERTY_H
 
 /*
- * OpenFX Property Suite - Vendored header for Glasspectum
+ * OpenFX Property Suite - Vendored header for Glasspectrum
  */
 
 #include "ofxCore.h"

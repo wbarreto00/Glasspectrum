@@ -1,13 +1,13 @@
 #pragma once
 /*
- * Glasspectum — Metal GPU Renderer
+ * Glasspectrum — Metal GPU Renderer
  * Primary rendering path for macOS. Dispatches Metal compute kernels
  * for the full pipeline.
  */
 
 #ifdef __APPLE__
 
-namespace glasspectum {
+namespace glasspectrum {
 
 struct RenderParams; // forward
 
@@ -31,6 +31,6 @@ void metalRender(const float *inputData, float *outputData,
                  void *metalCmdQueue // id<MTLCommandQueue> from Resolve
 );
 
-} // namespace glasspectum
+} // namespace glasspectrum
 
 #endif // __APPLE__

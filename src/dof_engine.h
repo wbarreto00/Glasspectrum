@@ -1,12 +1,12 @@
 #pragma once
 /*
- * Glasspectum — Depth-of-Field Engine
+ * Glasspectrum — Depth-of-Field Engine
  * Physically grounded Circle of Confusion computation.
  */
 
 #include "sensor_table.h"
 
-namespace glasspectum {
+namespace glasspectrum {
 
 // ── DOF computation parameters ─────────────────────────────────────
 
@@ -86,4 +86,4 @@ inline void focusLimits(const DOFParams &params, float &nearLimit,
   }
 }
 
-} // namespace glasspectum
+} // namespace glasspectrum

@@ -1,11 +1,11 @@
 #pragma once
 /*
- * Glasspectum — Color Pipeline
+ * Glasspectrum — Color Pipeline
  * Bidirectional conversion between camera/display color spaces and scene-linear
  * working space. Preserves out-of-range values (no clamping).
  */
 
-namespace glasspectum {
+namespace glasspectrum {
 
 enum ColorSpaceIndex {
   CS_LINEAR = 0,
@@ -39,4 +39,4 @@ void pixelFromLinear(float *rgba, ColorSpaceIndex cs);
 // Get display name for the choice param dropdown.
 const char *colorSpaceName(ColorSpaceIndex cs);
 
-} // namespace glasspectum
+} // namespace glasspectrum

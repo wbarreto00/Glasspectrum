@@ -1,7 +1,7 @@
 /*
- * Glasspectum — CUDA Compute Kernels (Stub)
+ * Glasspectrum — CUDA Compute Kernels (Stub)
  *
- * TODO: Port all kernels from glasspectum.metal to CUDA.
+ * TODO: Port all kernels from glasspectrum.metal to CUDA.
  * The kernel logic is identical — only the API differs.
  *
  * Required kernels:
@@ -19,4 +19,4 @@
  *  12. colorConvertKernel
  */
 
-// Placeholder — see shaders/glasspectum.metal for reference implementation
+// Placeholder — see shaders/glasspectrum.metal for reference implementation
