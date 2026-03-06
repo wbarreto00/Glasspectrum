@@ -390,12 +390,8 @@ void metalRender(const float *inputData, float *outputData,
                                     height:height
                                  mipmapped:NO];
     depthDesc.usage = MTLTextureUsageShaderRead;
-    depthDesc.storageMode = MTLStorageModeManaged;
+    depthDesc.storageMode = MTLStorageModePrivate;
     depthTex = [s_device newTextureWithDescriptor:depthDesc];
-    [depthTex replaceRegion:MTLRegionMake2D(0, 0, width, height)
-                mipmapLevel:0
-                  withBytes:depthData
-                bytesPerRow:width * sizeof(float)];
   }
 
   // Command buffer
@@ -437,6 +433,25 @@ void metalRender(const float *inputData, float *outputData,
            destinationSlice:0
            destinationLevel:0
           destinationOrigin:MTLOriginMake(0, 0, 0)];
+
+    if (depthData && depthTex) {
+      size_t depthRowBytes = width * sizeof(float);
+      size_t depthImgBytes = depthRowBytes * height;
+      id<MTLBuffer> stagingDepthBuf =
+          [s_device newBufferWithBytes:depthData
+                                length:depthImgBytes
+                               options:MTLResourceStorageModeShared];
+      [blit copyFromBuffer:stagingDepthBuf
+                 sourceOffset:0
+            sourceBytesPerRow:depthRowBytes
+          sourceBytesPerImage:depthImgBytes
+                   sourceSize:MTLSizeMake(width, height, 1)
+                    toTexture:depthTex
+             destinationSlice:0
+             destinationLevel:0
+            destinationOrigin:MTLOriginMake(0, 0, 0)];
+    }
+
     [blit endEncoding];
   }
 
