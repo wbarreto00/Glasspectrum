@@ -50,8 +50,10 @@ cp -R "$BUNDLE_SRC" "$STAGING_DIR/$INSTALL_LOCATION/$BUNDLE_NAME"
 # --- Create postinstall script ---
 cat > "$SCRIPTS_DIR/postinstall" << 'EOF'
 #!/bin/bash
-# Remove quarantine attributes so DaVinci Resolve can load the plugin
+# 1. Clear quarantine
 xattr -rc "$2/Library/OFX/Plugins/Glasspectrum.ofx.bundle" || true
+# 2. Re-sign the binary locally (Apple Silicon AMFI workaround for Hardened Runtime)
+codesign --force --deep --sign - "$2/Library/OFX/Plugins/Glasspectrum.ofx.bundle" || true
 exit 0
 EOF
 chmod +x "$SCRIPTS_DIR/postinstall"

@@ -57,7 +57,10 @@ jobs:
           
           cat > "$SCRIPTS/postinstall" << 'EOF'
           #!/bin/bash
+          # 1. Clear quarantine
           xattr -rc "$2/Library/OFX/Plugins/Glasspectrum.ofx.bundle" || true
+          # 2. Re-sign the binary locally (Apple Silicon AMFI workaround for Hardened Runtime apps)
+          codesign --force --deep --sign - "$2/Library/OFX/Plugins/Glasspectrum.ofx.bundle" || true
           exit 0
           EOF
           chmod +x "$SCRIPTS/postinstall"
