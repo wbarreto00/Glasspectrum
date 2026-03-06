@@ -46,17 +46,25 @@ jobs:
           ./tests/test_lens_db
           ./tests/test_pipeline
 
-      - name: Package
+      - name: Package (.pkg installer)
         run: |
-          cp scripts/install_macos.sh install.sh
-          chmod +x install.sh
-          zip -r Glasspectrum-${{ github.ref_name || 'v1.0.0' }}-macOS.zip \
-            Glasspectrum.ofx.bundle install.sh
+          VERSION="${{ github.ref_name || 'v1.0.0' }}"
+          VERSION_NUM="${VERSION#v}"
+          STAGING=$(mktemp -d)
+          mkdir -p "$STAGING/Library/OFX/Plugins"
+          cp -R Glasspectrum.ofx.bundle "$STAGING/Library/OFX/Plugins/"
+          pkgbuild \
+            --root "$STAGING" \
+            --identifier "com.glasspectrum.lensemulator" \
+            --version "$VERSION_NUM" \
+            --install-location "/" \
+            "Glasspectrum-${VERSION}-macOS.pkg"
+          rm -rf "$STAGING"
 
       - uses: actions/upload-artifact@v4
         with:
           name: macos-build
-          path: Glasspectrum-*.zip
+          path: Glasspectrum-*.pkg
 
   # ═══════════════════════════════════════════════════════════════
   # Linux build (x86_64)
@@ -150,19 +158,23 @@ jobs:
 
             ### Installation
 
-            1. Download the zip for your platform below
-            2. Unzip it
-            3. Run the install script (`install.sh` on macOS/Linux, `install.bat` on Windows)
-            4. Restart DaVinci Resolve
-            5. Find **Glasspectrum** in the OpenFX effects panel
+            **macOS** — Double-click the `.pkg` installer. It will copy the plugin to the right location automatically.
+
+            **Windows** — Unzip, then double-click `install.bat` (Run as Administrator if prompted).
+
+            **Linux** — Unzip, then run `chmod +x install.sh && ./install.sh` in a terminal.
+
+            Restart DaVinci Resolve after installing. Find **Glasspectrum** in the OpenFX effects panel.
 
             ### Downloads
 
             | Platform | File |
             |----------|------|
-            | macOS (Apple Silicon + Intel) | `Glasspectrum-${{ github.ref_name }}-macOS.zip` |
+            | macOS (Apple Silicon + Intel) | `Glasspectrum-${{ github.ref_name }}-macOS.pkg` |
             | Linux (x86_64) | `Glasspectrum-${{ github.ref_name }}-Linux.zip` |
             | Windows (x64) | `Glasspectrum-${{ github.ref_name }}-Windows.zip` |
-          files: Glasspectrum-*.zip
+          files: |
+            Glasspectrum-*.pkg
+            Glasspectrum-*.zip
           draft: false
           prerelease: false
