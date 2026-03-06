@@ -41,10 +41,20 @@ echo ""
 
 # --- Stage the payload ---
 STAGING_DIR=$(mktemp -d)
-trap "rm -rf '$STAGING_DIR'" EXIT
+SCRIPTS_DIR=$(mktemp -d)
+trap "rm -rf '$STAGING_DIR' '$SCRIPTS_DIR'" EXIT
 
 mkdir -p "$STAGING_DIR/$INSTALL_LOCATION"
 cp -R "$BUNDLE_SRC" "$STAGING_DIR/$INSTALL_LOCATION/$BUNDLE_NAME"
+
+# --- Create postinstall script ---
+cat > "$SCRIPTS_DIR/postinstall" << 'EOF'
+#!/bin/bash
+# Remove quarantine attributes so DaVinci Resolve can load the plugin
+xattr -rc "$2/Library/OFX/Plugins/Glasspectrum.ofx.bundle" || true
+exit 0
+EOF
+chmod +x "$SCRIPTS_DIR/postinstall"
 
 # --- Build the .pkg ---
 OUTPUT_NAME="Glasspectrum-v${PKG_VERSION}-macOS.pkg"
@@ -52,6 +62,7 @@ OUTPUT_PATH="$PROJECT_ROOT/$OUTPUT_NAME"
 
 pkgbuild \
     --root "$STAGING_DIR" \
+    --scripts "$SCRIPTS_DIR" \
     --identifier "$PKG_IDENTIFIER" \
     --version "$PKG_VERSION" \
     --install-location "/" \

@@ -51,15 +51,25 @@ jobs:
           VERSION="${{ github.ref_name || 'v1.0.0' }}"
           VERSION_NUM="${VERSION#v}"
           STAGING=$(mktemp -d)
+          SCRIPTS=$(mktemp -d)
           mkdir -p "$STAGING/Library/OFX/Plugins"
           cp -R Glasspectrum.ofx.bundle "$STAGING/Library/OFX/Plugins/"
+          
+          cat > "$SCRIPTS/postinstall" << 'EOF'
+          #!/bin/bash
+          xattr -rc "$2/Library/OFX/Plugins/Glasspectrum.ofx.bundle" || true
+          exit 0
+          EOF
+          chmod +x "$SCRIPTS/postinstall"
+
           pkgbuild \
             --root "$STAGING" \
+            --scripts "$SCRIPTS" \
             --identifier "com.glasspectrum.lensemulator" \
             --version "$VERSION_NUM" \
             --install-location "/" \
             "Glasspectrum-${VERSION}-macOS.pkg"
-          rm -rf "$STAGING"
+          rm -rf "$STAGING" "$SCRIPTS"
 
       - uses: actions/upload-artifact@v4
         with:
