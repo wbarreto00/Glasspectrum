@@ -832,6 +832,8 @@ static OfxPlugin s_plugin = {kOfxImageEffectPluginApi,
 // ══  EXPORTED SYMBOLS  ═════════════════════════════════════
 // ══════════════════════════════════════════════════════════════
 
+extern "C" {
+
 OfxExport int OfxGetNumberOfPlugins(void) { return 1; }
 
 OfxExport OfxPlugin *OfxGetPlugin(int nth) {
@@ -839,3 +841,5 @@ OfxExport OfxPlugin *OfxGetPlugin(int nth) {
     return &glasspectrum::s_plugin;
   return nullptr;
 }
+
+} // extern "C"
