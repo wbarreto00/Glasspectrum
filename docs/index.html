@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glasspectrum — Cinema Lens Emulation for DaVinci Resolve</title>
+  <meta name="description" content="Transform your footage with authentic cinema lens character. 50 real lens presets, GPU-accelerated, free and open-source OFX plugin for DaVinci Resolve.">
+  <meta name="keywords" content="DaVinci Resolve, OFX plugin, lens emulation, bokeh, chromatic aberration, cinema lens, free plugin, color grading">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ═══ NAV ═══ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="12" stroke="url(#lg)" stroke-width="2"/><circle cx="14" cy="14" r="7" stroke="url(#lg)" stroke-width="1.5" opacity=".6"/><circle cx="14" cy="14" r="3" fill="url(#lg)"/><defs><linearGradient id="lg" x1="0" y1="0" x2="28" y2="28"><stop stop-color="#60A5FA"/><stop offset="1" stop-color="#C084FC"/></linearGradient></defs></svg>
+        <span>Glasspectrum</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#presets">Presets</a>
+        <a href="#install">Install</a>
+        <a href="#download" class="btn btn-sm">Download Free</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="assets/hero.png" alt="" class="hero-bg-img" loading="eager">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">Free &amp; Open Source · OFX Plugin</div>
+      <h1 class="hero-title">
+        Give your footage the<br>
+        <span class="gradient-text">soul of cinema glass.</span>
+      </h1>
+      <p class="hero-subtitle">
+        50 real cinema lens presets. Bokeh, flares, chromatic aberration, vignette &amp; more.<br>
+        GPU-accelerated for DaVinci Resolve 18.6+
+      </p>
+      <div class="hero-cta">
+        <a href="#download" class="btn btn-primary btn-lg">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v10m0 0l-4-4m4 4l4-4M3 17h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Download Free
+        </a>
+        <a href="#features" class="btn btn-ghost btn-lg">Learn More</a>
+      </div>
+      <div class="hero-platforms">
+        <span class="platform-tag">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M11.182.008C11.148-.03 9.513.04 8.298 1.073 7.17 2.034 6.85 3.31 6.876 3.363c.034.053 1.744-.054 2.91-1.052 1.167-.998 1.43-2.25 1.396-2.303zm-.436 2.93c-.677-.002-1.635.404-2.228.737-1.178.66-1.767.66-2.667.66C4.79 4.335 3 5.89 3 8.252c0 3.18 2.18 7.14 3.736 7.26.677.053 1.243-.595 2.345-.595s1.632.595 2.587.56c1.59-.243 3.332-4.373 3.332-4.373s-1.962-.897-1.962-3.195c0-2.016 1.663-2.94 1.663-2.94S13.173 2.94 10.746 2.94z"/></svg>
+          macOS
+        </span>
+        <span class="platform-tag">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M0 2.5A.5.5 0 01.5 2h15a.5.5 0 01.5.5v11a.5.5 0 01-.5.5H.5a.5.5 0 01-.5-.5v-11zm6.5 0v4.5H1V3h5.5zm1 0V7h7V3H7.5zM1 7.5v3h5.5V7.5H1zm6.5 0v3H15V7.5H7.5zM1 11v2h5.5v-2H1zm6.5 0v2H15v-2H7.5z"/></svg>
+          Windows
+        </span>
+        <span class="platform-tag">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 100 16A8 8 0 008 0zM2.04 4.326c.325 1.329 2.532 2.54 3.717 1.928.48-.248.498-.64.29-1.065-.322-.66-.632-1.097-.29-1.65C6.34 2.59 7.37 2.116 8.157 2.04c.95-.09 2.13.3 2.562 1.148.467.914.018 2.022-.587 2.73-.79.923-1.98 1.32-2.992 1.76-.8.35-1.498.86-1.758 1.747-.08.27-.13.57-.12.868.03 1.32.738 2.47 1.888 3.014.63.298 1.33.424 2.002.42.73-.005 1.33-.09 2.02-.48.82-.46 1.24-1.232 1.43-2.13.09-.43.06-.88.03-1.32-.09-1.21-.78-2.125-1.68-2.795-.44-.33-.93-.55-1.403-.77-.47-.22-.913-.44-1.22-.83-.31-.39-.38-.88-.16-1.33.14-.29.39-.53.69-.67.62-.28 1.26-.02 1.64.49.21.29.38.6.68.79.29.19.66.16.91-.07.26-.24.35-.6.22-.92-.17-.42-.58-.69-.97-.84-.8-.295-1.75-.18-2.5.22-1.1.58-1.65 1.79-1.62 3.01.01.42.06.83.19 1.24.21.64.59 1.18 1.1 1.58.54.42 1.15.72 1.73 1.04.57.31 1.12.62 1.49 1.14.27.38.38.84.3 1.3-.1.57-.46 1.07-.95 1.36-.36.21-.78.32-1.2.33-.4.01-.82-.06-1.17-.25-.62-.33-1.02-.93-1.08-1.62-.02-.24 0-.48.06-.72.17-.68.58-1.2 1.1-1.6.65-.49 1.41-.8 2.13-1.15 1.15-.57 2.3-1.25 2.86-2.47.35-.76.39-1.61.13-2.39-.33-1-1.14-1.74-2.13-2.04C10.99.23 9.83.12 8.71.26 7.1.46 5.46 1.18 4.5 2.47c-.35.47-.57 1.01-.63 1.59-.05.4.01.79.16 1.15-.44.17-.88.37-1.28.62-.67.41-1.1 1.01-1.22 1.73z"/></svg>
+          Linux
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FEATURES ═══ -->
+  <section class="section features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">11 optical stages.<br><span class="gradient-text">Zero compromise.</span></h2>
+        <p class="section-desc">Every processing stage runs in scene-linear light space, preserving your highlights and dynamic range. GPU-accelerated on Metal, with CPU fallback.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card feature-card-hero">
+          <div class="feature-icon" style="--accent: #60A5FA">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6" opacity=".5"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <h3>Depth-of-Field Bokeh</h3>
+          <p>Physically-based thin-lens model. Golden-angle spiral sampling, adjustable blade count, curvature, cat-eye vignetting, and swirl.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="--accent: #F472B6">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9" stroke-dasharray="4 2"/></svg>
+          </div>
+          <h3>Chromatic Aberration</h3>
+          <p>Lateral radial RGB displacement calibrated per lens. Accurate fringing that scales with resolution.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="--accent: #FBBF24">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 010 20" fill="currentColor" opacity=".15"/></svg>
+          </div>
+          <h3>Vignette &amp; Color Cast</h3>
+          <p>Exposure falloff in stops with natural power curve. Per-lens edge color shift in CIE xy chromaticity.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="--accent: #34D399">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9"/><path d="M12 3c2.21 0 4 4.03 4 9s-1.79 9-4 9" opacity=".5"/></svg>
+          </div>
+          <h3>Distortion Warp</h3>
+          <p>Brown–Conrady model with k1/k2/k3 radial and p1/p2 tangential coefficients. Optional scale-to-frame.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="--accent: #A78BFA">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </div>
+          <h3>Bloom &amp; Veiling Glare</h3>
+          <p>Multi-scale thresholded blur with per-lens tint. Adds that cinematic halation around highlights.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="--accent: #FB923C">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12l5-3v6l-5-3zM22 12l-5-3v6l5-3z"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
+          </div>
+          <h3>Anamorphic Mode</h3>
+          <p>Squeeze factors (1.25x–2x), oval bokeh, horizontal streak flares, blue flare bias. 10 anamorphic presets included.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="--accent: #F87171">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Coma</h3>
+          <p>Directional anisotropic blur radiating from center. Per-lens hue bias gives characteristic sagittal/tangential smearing.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="--accent: #2DD4BF">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 3v18"/></svg>
+          </div>
+          <h3>f-Stop Sharpener</h3>
+          <p>MTF microcontrast restoration with highlight protection and wide-open glow awareness. Not a generic sharpen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PRESETS ═══ -->
+  <section class="section presets-section" id="presets">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">50 cinema lenses.<br><span class="gradient-text">Mix and match traits.</span></h2>
+        <p class="section-desc">From modern clinical primes to vintage character glass. Every preset has calibrated distortion, bokeh, CA, vignette, bloom, fringing, and sharpness.</p>
+      </div>
+      <div class="preset-categories">
+        <button class="preset-tab active" data-cat="primes">Cinema Primes</button>
+        <button class="preset-tab" data-cat="zooms">Cinema Zooms</button>
+        <button class="preset-tab" data-cat="anamorphic">Anamorphic</button>
+        <button class="preset-tab" data-cat="vintage">Vintage &amp; Character</button>
+        <button class="preset-tab" data-cat="exotic">Exotic</button>
+      </div>
+      <div class="preset-grid" id="presetGrid">
+        <!-- Filled by JS -->
+      </div>
+      <div class="mix-match-callout">
+        <div class="callout-icon">🔀</div>
+        <div>
+          <h3>Mix &amp; Match System</h3>
+          <p>Override any trait group with a different lens. Want Master Prime sharpness with Cooke Panchro bokeh and Helios swirl? Done.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COLOR PIPELINE ═══ -->
+  <section class="section pipeline-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Color-managed.<br><span class="gradient-text">ACES-compatible.</span></h2>
+        <p class="section-desc">11 input color spaces supported. All processing in scene-linear — no highlight clipping, no banding, no surprises.</p>
+      </div>
+      <div class="pipeline-chips">
+        <span class="chip">sRGB</span>
+        <span class="chip">Rec.709</span>
+        <span class="chip">Linear</span>
+        <span class="chip">ACEScc</span>
+        <span class="chip">ACEScct</span>
+        <span class="chip">ACEScg</span>
+        <span class="chip">ARRI LogC3</span>
+        <span class="chip">Sony S-Log3</span>
+        <span class="chip">Panasonic V-Log</span>
+        <span class="chip">Canon Log</span>
+        <span class="chip">HLG</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ INSTALL ═══ -->
+  <section class="section install-section" id="install">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Install in<br><span class="gradient-text">3 simple steps.</span></h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div class="step-icon">📥</div>
+          <h3>Download</h3>
+          <p>Click the download button for your operating system below. You'll get a small zip file.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div class="step-icon">📂</div>
+          <h3>Unzip &amp; Install</h3>
+          <p><strong>Mac/Linux:</strong> Unzip and double-click <code>install.sh</code><br>
+             <strong>Windows:</strong> Unzip and double-click <code>install.bat</code><br>
+             Enter your password if asked.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div class="step-icon">🎬</div>
+          <h3>Open Resolve</h3>
+          <p>Restart DaVinci Resolve. Go to the <strong>Color</strong> page, open <strong>OpenFX</strong>, and find <strong>Glasspectrum</strong> in the effects list.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DOWNLOAD ═══ -->
+  <section class="section download-section" id="download">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Download<br><span class="gradient-text">Glasspectrum v1.0</span></h2>
+        <p class="section-desc">Free and open-source. No account, no subscription, no DRM.</p>
+      </div>
+      <div class="download-grid">
+        <a href="https://github.com/wbarreto00/Glasspectrum/releases/download/v1.0.0/Glasspectrum-v1.0.0-macOS.zip" class="download-card" id="dl-mac">
+          <div class="dl-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83z"/><path d="M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          </div>
+          <div class="dl-info">
+            <h3>macOS</h3>
+            <span class="dl-detail">Apple Silicon + Intel · 91 KB</span>
+          </div>
+          <div class="dl-arrow">↓</div>
+        </a>
+        <a href="https://github.com/wbarreto00/Glasspectrum/releases/download/v1.0.0/Glasspectrum-v1.0.0-Windows.zip" class="download-card" id="dl-win">
+          <div class="dl-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
+          </div>
+          <div class="dl-info">
+            <h3>Windows</h3>
+            <span class="dl-detail">64-bit · 31 KB</span>
+          </div>
+          <div class="dl-arrow">↓</div>
+        </a>
+        <a href="https://github.com/wbarreto00/Glasspectrum/releases/download/v1.0.0/Glasspectrum-v1.0.0-Linux.zip" class="download-card" id="dl-linux">
+          <div class="dl-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.224-.373.427-.467.601-.292.584-.104 1.195.406 1.538 0 .002.002 0 .002.002.324.252.686.315.99.311.375-.07.737-.24 1.055-.41.318-.174.628-.354.874-.491L8.28 18.86c.645-.12 1.295-.225 1.935-.36.186-.039.395-.044.553-.164l.018.002c.291-.08.564-.221.838-.359.136-.068.271-.137.389-.167.137-.034.264-.052.387-.052.085 0 .17.008.258.029.148.033.287.092.42.156.135.064.265.137.399.205.274.14.558.281.852.361l.018-.002c.158.12.367.125.553.164.64.135 1.29.24 1.935.36l1.396.177c.246.137.556.317.874.491.318.17.68.34 1.055.41.303.004.666-.06.99-.311.001-.002.003 0 .003-.002.51-.343.698-.954.406-1.538-.094-.174-.268-.377-.467-.601-.213-.239-.403-.571-.663-.839a.424.424 0 00-.11-.135c.123-.805-.009-1.657-.287-2.489-.589-1.771-1.831-3.47-2.716-4.521-.75-1.067-.974-1.928-1.05-3.02-.065-1.491 1.056-5.965-3.17-6.298A5.095 5.095 0 0012.504 0z"/></svg>
+          </div>
+          <div class="dl-info">
+            <h3>Linux</h3>
+            <span class="dl-detail">x86_64 · 29 KB</span>
+          </div>
+          <div class="dl-arrow">↓</div>
+        </a>
+      </div>
+      <p class="dl-note">Requires DaVinci Resolve 18.6 or later (Free or Studio)</p>
+    </div>
+  </section>
+
+  <!-- ═══ SUPPORT ═══ -->
+  <section class="section support-section" id="support">
+    <div class="container">
+      <div class="support-card">
+        <div class="support-emoji">☕</div>
+        <h2>Enjoying Glasspectrum?</h2>
+        <p>This plugin is free and always will be. If it saved you time or inspired your work, consider buying me a coffee.</p>
+        <a href="https://www.paypal.com/donate?business=wrlrep%40gmail.com&currency_code=USD" target="_blank" rel="noopener" class="btn btn-coffee btn-lg">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21h18v-2H2v2zM20 8h-1V5c0-1.1-.9-2-2-2H7c-1.1 0-2 .9-2 2v3H4c-1.1 0-2 .9-2 2v5h2v4h2v-4h12v4h2v-4h2v-5c0-1.1-.9-2-2-2zM7 5h10v3H7V5zm13 10H4v-3h16v3z"/></svg>
+          Buy Me a Coffee
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="12" stroke="url(#lg2)" stroke-width="2"/><circle cx="14" cy="14" r="7" stroke="url(#lg2)" stroke-width="1.5" opacity=".6"/><circle cx="14" cy="14" r="3" fill="url(#lg2)"/><defs><linearGradient id="lg2" x1="0" y1="0" x2="28" y2="28"><stop stop-color="#60A5FA"/><stop offset="1" stop-color="#C084FC"/></linearGradient></defs></svg>
+        <span>Glasspectrum</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/wbarreto00/Glasspectrum" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/wbarreto00/Glasspectrum/issues" target="_blank" rel="noopener">Report a Bug</a>
+        <a href="https://github.com/wbarreto00/Glasspectrum/blob/master/LICENSE" target="_blank" rel="noopener">MIT License</a>
+      </div>
+      <p class="footer-copy">© 2026 Glasspectrum · Made with 🔭 for filmmakers</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
