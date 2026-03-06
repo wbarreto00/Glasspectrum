@@ -696,6 +696,12 @@ static OfxStatus actionRender(OfxImageEffectHandle effect,
   int width = dstBounds[2] - dstBounds[0];
   int height = dstBounds[3] - dstBounds[1];
 
+  if (!srcData || !dstData || width <= 0 || height <= 0) {
+    gEffectSuite->clipReleaseImage(srcImg);
+    gEffectSuite->clipReleaseImage(dstImg);
+    return kOfxStatOK;
+  }
+
   // Collect parameters
   OfxParamSetHandle paramSet;
   gEffectSuite->getParamSet(effect, &paramSet);

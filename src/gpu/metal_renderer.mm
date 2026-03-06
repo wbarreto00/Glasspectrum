@@ -157,8 +157,9 @@ bool metalInit() {
 
   if (!s_library) {
     // Fallback: try compiling from source at runtime
-    NSString *srcPath = @"/Library/OFX/Plugins/Glasspectrum.ofx.bundle/Contents/"
-                        @"Resources/glasspectrum.metal";
+    NSString *srcPath =
+        @"/Library/OFX/Plugins/Glasspectrum.ofx.bundle/Contents/"
+        @"Resources/glasspectrum.metal";
     NSString *src = [NSString stringWithContentsOfFile:srcPath
                                               encoding:NSUTF8StringEncoding
                                                  error:&error];
@@ -243,6 +244,10 @@ static void dispatchKernel(id<MTLComputeCommandEncoder> encoder,
 void metalRender(const float *inputData, float *outputData,
                  const float *depthData, int width, int height,
                  const RenderParams &params, void *metalCmdQueue) {
+  if (!inputData || !outputData || width <= 0 || height <= 0) {
+    return;
+  }
+
   id<MTLCommandQueue> cmdQueue = (__bridge id<MTLCommandQueue>)metalCmdQueue;
   if (!cmdQueue) {
     // If no command queue from host, create our own
@@ -393,13 +398,7 @@ void metalRender(const float *inputData, float *outputData,
                 bytesPerRow:width * sizeof(float)];
   }
 
-  // Upload input data via a staging buffer
-  id<MTLBuffer> stagingBuf =
-      [s_device newBufferWithBytes:inputData
-                            length:pixelCount * 4 * sizeof(float)
-                           options:MTLResourceStorageModeShared];
-
-  // Parameter buffer
+  // Command buffer
   id<MTLBuffer> paramBuf =
       [s_device newBufferWithBytes:&gpuParams
                             length:sizeof(GlassPipelineParams)
