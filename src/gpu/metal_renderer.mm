@@ -407,19 +407,36 @@ void metalRender(const float *inputData, float *outputData,
   // Command buffer
   id<MTLCommandBuffer> cmdBuf = [cmdQueue commandBuffer];
 
-  // Upload to texA via blit
+  // Upload to texA via a buffer to avoid replaceRegion crash on unaligned host
+  // memory
   {
+    size_t rowBytes = width * 4 * sizeof(float);
+    size_t imgBytes = rowBytes * height;
+    id<MTLBuffer> stagingImgBuf =
+        [s_device newBufferWithBytes:inputData
+                              length:imgBytes
+                             options:MTLResourceStorageModeShared];
+
     id<MTLBlitCommandEncoder> blit = [cmdBuf blitCommandEncoder];
-    // We need a managed texture to copy from buffer
-    MTLTextureDescriptor *managedDesc = [texDesc copy];
-    managedDesc.storageMode = MTLStorageModeManaged;
-    id<MTLTexture> managedTex = [s_device newTextureWithDescriptor:managedDesc];
-    [managedTex replaceRegion:MTLRegionMake2D(0, 0, width, height)
-                  mipmapLevel:0
-                    withBytes:inputData
-                  bytesPerRow:width * 4 * sizeof(float)];
-    [blit copyFromTexture:managedTex toTexture:texA];
-    [blit copyFromTexture:managedTex toTexture:origTex];
+    [blit copyFromBuffer:stagingImgBuf
+               sourceOffset:0
+          sourceBytesPerRow:rowBytes
+        sourceBytesPerImage:imgBytes
+                 sourceSize:MTLSizeMake(width, height, 1)
+                  toTexture:texA
+           destinationSlice:0
+           destinationLevel:0
+          destinationOrigin:MTLOriginMake(0, 0, 0)];
+
+    [blit copyFromBuffer:stagingImgBuf
+               sourceOffset:0
+          sourceBytesPerRow:rowBytes
+        sourceBytesPerImage:imgBytes
+                 sourceSize:MTLSizeMake(width, height, 1)
+                  toTexture:origTex
+           destinationSlice:0
+           destinationLevel:0
+          destinationOrigin:MTLOriginMake(0, 0, 0)];
     [blit endEncoding];
   }
 
