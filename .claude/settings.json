@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cmake:*)",
+      "Bash(make:*)",
+      "Bash(ctest:*)",
+      "Bash(cmake --build:*)",
+      "Bash(cmake --install:*)",
+      "Bash(./build/tests/test_lens_db:*)",
+      "Bash(./build/tests/test_pipeline:*)",
+      "Bash(./build/tools/glasspectrum_qa:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git switch:*)",
+      "Bash(git checkout:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(file:*)"
+    ]
+  }
+}
